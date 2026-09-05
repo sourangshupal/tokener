@@ -20,3 +20,6 @@ medical_bpe_tokenizer.json
 
 # macOS
 .DS_Store
+
+# Agent guidance (local only, not for publication)
+AGENTS.md
