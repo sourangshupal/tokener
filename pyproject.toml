@@ -1,0 +1,19 @@
+[project]
+name = "tokener"
+version = "0.1.0"
+description = "Compare general-purpose vs. medical tokenizers and train a domain-specific BPE tokenizer"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "datasets>=2.14",
+    "sacremoses>=0.0.53",
+    "tokenizers>=0.15",
+    "transformers>=4.29",
+]
+
+[project.scripts]
+tokener = "tokener.pipeline:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
