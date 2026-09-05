@@ -134,12 +134,6 @@ tokener --n-train 1000 --vocab-size 10000
 | 🐍 `sacremoses` | Moses tokenizer required by BioGPT's legacy fairseq-style pipeline |
 | ⚡ [`uv`](https://docs.astral.sh/uv/) | Fast package management & `tokener` CLI entry point |
 
-## ⚠️ Implementation notes (things that bite)
-
-- 📜 **`scientific_papers` / `wikitext` are legacy script-era datasets.** Modern `datasets` refuses to run dataset scripts, so the code loads the Hub's automatic parquet export directly (`hf_hub_download` at revision `refs/convert/parquet`).
-- 🧩 **BioGPT is not GPT-2-style BPE.** It's fairseq-style (Moses pre-tokenization + `</w>` end-of-word markers), and recent `transformers` dropped its fast backend — hence `AutoTokenizer` + `sacremoses`, while `gpt2` loads straight into the raw `tokenizers` library.
-- 🐛 **Two byte-level training footguns**, both handled: `ByteLevel` defaults to `add_prefix_space=True` (phantom leading space), and without `initial_alphabet=ByteLevel.alphabet()` decoding can silently drop rare characters.
-- 🎓 **Honest caveat:** domain vocabulary mainly buys *efficiency* (fertility, context length, cost). Downstream accuracy gains are modest next to domain pretraining — PubMedBERT's own ablations (Gu et al., 2021).
 
 ## 🙋 Discussion questions (for the classroom)
 
